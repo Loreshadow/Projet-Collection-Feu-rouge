@@ -1,0 +1,22 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins';
+
+header {
+  background-color: darken(v.$dark, 7.5%);
+  padding: v.$space;
+  color: v.$light;
+  border-bottom: 1px solid v.$green;
+  border-top: 1px solid v.$red;
+  nav {
+    width: 100%;
+    display: flex;
+    @include mixins.flex-center;
+    justify-content: space-between;
+    ul {
+      width: 100%;
+      display: flex;
+      margin-left: 15%;
+      gap: 15px;
+    }
+  }
+}

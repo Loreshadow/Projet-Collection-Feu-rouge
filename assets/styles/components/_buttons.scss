@@ -1,0 +1,13 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins';
+.btn {
+  padding: v.$space v.$space * 1.5;
+  border-radius: v.$radius;
+  background-color: v.$green;
+  color: white;
+  font-family: v.$font-heading;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  @include mixins.transition(all);
+}

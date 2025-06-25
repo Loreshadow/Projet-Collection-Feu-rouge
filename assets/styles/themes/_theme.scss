@@ -1,0 +1,7 @@
+
+@use '../abstracts/variables' as v;
+
+.dark-theme {
+  background-color: v.$dark;
+  color: v.$light;
+}

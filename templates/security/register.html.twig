@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register !{% endblock %}
+{% block body %}
+{{ form_start(RegisterTypeForm) }}
+{{ form_widget(RegisterTypeForm) }}
+<button>Valider</button>
+{{ form_end(RegisterTypeForm) }}
+{% endblock %}

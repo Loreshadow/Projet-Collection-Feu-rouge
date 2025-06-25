@@ -1,0 +1,20 @@
+@use '../abstracts/variables' as v;
+
+h1, h2, h3, h4 {
+  font-family: v.$font-heading;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.menu-items {
+font-family: v.$font-heading;
+font-size: 1.5rem;
+color: v.$light;
+}
+body {
+  font-family: v.$font-base;
+  font-size: 1rem;
+  background-color: v.$light;
+  color: v.$dark;
+  line-height: 1.6;
+}
