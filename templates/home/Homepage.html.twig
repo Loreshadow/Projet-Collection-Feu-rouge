@@ -4,8 +4,11 @@
 
 {% block body %}
 <main class="home-page">
+{# section HERO  #}
     <section class="hero">
+        <div class="circle-light-hollow"></div>
         <div class="hero__image">
+                {# traffic light number 1#}
             <div class="traffic-light">
                 <div class="light red"></div>
                 <div class="light orange"></div>
@@ -13,12 +16,13 @@
             </div>
         </div>
         <div class="hero__content">
-            <h1>Bienvenue au feu vert</h1>
+            <h1>Bienvenue au feu Rouge</h1>
             <p class="hero__subtitle">
                 Plongez dans la passion des feux de signalisation du monde entier.
             </p>
             <a href="" class="btn">Ma collection</a>
         </div>
+        {# traffic light number 2#}
         <div class="hero__image">
             <div class="traffic-light">
                 <div class="light red"></div>
@@ -27,13 +31,67 @@
             </div>
         </div>
     </section>
-
-    <nav class="main-nav">
-        <ul>
-            <li><a href="">À propos</a></li>
-            <li><a href="">Ma collection</a></li>
-            <li><a href="">Contact</a></li>
-        </ul>
-    </nav>
+    {# section pruducts  #}
+    <section id="Produits">
+            <div class="produit-heading-container">
+                <h2>Voici la listes de nos derniers produits ajouté :</h2>
+            </div>
+        <div class="produit-content-container">
+            {# card number 1 #}
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-content-container">
+                        <div class="card-heading">
+                            <div class="card-img-container">
+                                <p>IMAGE</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+                {# card number 2  #}
+                <div class="card">
+                    <div class="card-content-container">
+                        <div class="card-heading">
+                            <div class="card-img-container">
+                            <p>IMAGE</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+                    {# card number 3 #}
+                <div class="card">
+                    <div class="card-content-container">
+                        <div class="card-heading">
+                            <div class="card-img-container">
+                            <p>IMAGE</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+                    {# card number 4 #}
+                <div class="card">
+                    <div class="card-content-container">
+                        <div class="card-heading">
+                            <div class="card-img-container">
+                            <p>IMAGE</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 {% endblock %}

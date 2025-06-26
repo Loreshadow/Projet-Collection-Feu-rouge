@@ -1,8 +1,43 @@
 @use '../abstracts/variables' as v;
 
-.card {
-  background: white;
-  border-radius: v.$radius;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: v.$space;
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  .card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1%;
+    width: 45%;
+    margin: 15px;
+    background: white;
+    border-radius: v.$radius;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: v.$space;
+    border: 0.5px solid v.$red;
+
+    &.border-green { border-color: v.$green; }
+    &.border-orange { border-color: v.$orange; }
+    &.border-red { border-color: v.$red; }
+    
+    &.border-green {
+      box-shadow: 0 0 5px 0.5px v.$green;
+    }
+    &.border-orange {
+      box-shadow: 0 0 5px 0.5px v.$orange;
+    }
+    &.border-red {
+      box-shadow: 0 0 5px 0.5px v.$red;
+    }
+
+    .card-content-container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      .card-heading {
+        margin-right: 25%;
+      }
+    }
+  }
 }

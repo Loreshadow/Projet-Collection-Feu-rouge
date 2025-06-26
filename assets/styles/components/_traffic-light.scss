@@ -3,7 +3,7 @@
 
 .traffic-light {
   width: 80px;
-  background-color: v.$dark;
+  background-color: darken(v.$dark, 7.5%);
   border-radius: v.$radius;
   padding: 1rem;
   @include mixins.flex-center;

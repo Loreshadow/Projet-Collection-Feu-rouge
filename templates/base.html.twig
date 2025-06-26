@@ -24,6 +24,15 @@
             {% endif %}
             {% if app.user %}
                 <li><a href="{{ path('logout') }}" class="menu-items"> Se déconnecter</a></li>
+                <div class="nav-avatars-container">
+                    <a href="">
+                        <img 
+                        src="/img/6596121.png" 
+                        alt="Avatar" 
+                        class="nav-avatar"
+                        >
+                    </a>
+                </div>
                 <li class="menu-items">Bonjour {{ app.user.userIdentifier }}</li>
             {% else %}
                 <li><a href="{{ path('register') }}" class="menu-items"> S'inscrire</a></li>
