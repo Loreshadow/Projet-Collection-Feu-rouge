@@ -6,6 +6,8 @@ use App\Entity\TrafficLight;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class AddTrafficTypeForm extends AbstractType
 {
@@ -16,7 +18,22 @@ class AddTrafficTypeForm extends AbstractType
             ->add('value')
             ->add('description')
             ->add('special')
-            ->add('image')
+            ->add('imageFile', FileType::class, [
+                'required' => false,
+                'mapped' => true,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif',
+                            'image/webp'
+                        ],
+                        'mimeTypesMessage' => 'Veuillez uploader une image valide (JPEG, PNG, GIF).',
+                    ]),
+                ],
+            ])
         ;
     }
 

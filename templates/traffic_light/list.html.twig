@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des feux{% endblock %}
+
+{% block body %}
+<main class="traffic-list-page">
+    <h1 class="traffic-list-title">Liste des feux tricolores</h1>
+
+    <form method="get" action="{{ path('traffic_list', {page: 1}) }}" class="traffic-search-form">
+        <input type="text" name="q" value="{{ app.request.get('q') }}" placeholder="Rechercher un feu..." class="traffic-search-input">
+        <button type="submit" class="btn">Rechercher</button>
+    </form>
+
+    {% if selected %}
+    <div class="traffic-featured">
+        <div class="traffic-featured-img">
+            {% if selected.image %}
+                <img src="/uploads/images/{{ selected.image }}" alt="{{ selected.name }}">
+            {% else %}
+                <div class="img-placeholder">Aucune image</div>
+            {% endif %}
+        </div>
+        <div class="traffic-featured-content">
+            <h2>{{ selected.name }}</h2>
+            <p><strong>Caractéristique spéciale :</strong> {{ selected.special }}</p>
+            <p><strong>Valeur estimée :</strong> {{ selected.value }}</p>
+            <p><strong>Description :</strong> {{ selected.description }}</p>
+            <a href="{{ path('traffic_light_detail', {id: selected.id}) }}" class="btn-featured">Voir la fiche détaillée</a>
+        </div>
+    </div>
+    {% endif %}
+
+    <ul class="traffic-list">
+        {% for feu in trafficLights %}
+            <li class="traffic-list-item">
+                <span class="traffic-list-img">
+                    {% if feu.image %}
+                        <img src="/uploads/images/{{ feu.image }}" alt="{{ feu.name }}">
+                    {% else %}
+                        <div class="img-placeholder">Aucune image</div>
+                    {% endif %}
+                </span>
+                <span class="traffic-list-content">
+                    <h2>{{ feu.name }}</h2>
+                    <div class="special">Caractéristique spéciale : {{ feu.special }}</div>
+                    <div class="desc">{{ feu.description }}</div>
+                    <p><strong>Spécial :</strong> {{ feu.special }}</p>
+                    <a href="{{ path('traffic_light_detail', {id: feu.id}) }}" class="btn btn-detail">Voir la fiche détaillée</a>
+                </span>
+            </li>
+        {% else %}
+            <li>Aucun feu trouvé.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="{{ path('traffic_list', {page: page-1, q: app.request.get('q')}) }}" class="btn">Page précédente</a>
+        {% endif %}
+        {% if page < maxPage %}
+            <a href="{{ path('traffic_list', {page: page+1, q: app.request.get('q')}) }}" class="btn">Page suivante</a>
+        {% endif %}
+        <span class="page-indicator">Page {{ page }} / {{ maxPage }}</span>
+    </div>
+</main>
+{% endblock %}

@@ -2,17 +2,20 @@
 
 namespace App\Controller;
 
+use App\Repository\TrafficLightRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
-final class HomeController extends AbstractController
+class HomeController extends AbstractController
 {
     #[Route('/', name: 'Home')]
-    public function index(): Response
+    public function index(TrafficLightRepository $trafficLightRepository): Response
     {
+        $lastTrafficLights = $trafficLightRepository->findBy([], ['id' => 'DESC'], 4);
+
         return $this->render('home/Homepage.html.twig', [
-            
+            'lastTrafficLights' => $lastTrafficLights,
         ]);
     }
 }

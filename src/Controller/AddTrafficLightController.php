@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\TrafficLight;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\AddTrafficTypeForm;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class AddTrafficLightController extends AbstractController
 {
@@ -13,7 +16,7 @@ final class AddTrafficLightController extends AbstractController
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $traffic = new TrafficLight();
-    $form = $this->createForm(addTrafficTypeForm::class, $glaces);
+    $form = $this->createForm(AddTrafficTypeForm::class, $traffic);
 
     $form->handleRequest($request);
 
@@ -23,12 +26,12 @@ final class AddTrafficLightController extends AbstractController
 
         $this->addFlash('success', 'Feu Tricolore ajouté avec succès!');
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('Home');
     }
 
 
-        return $this->render('add_traffic_light/add_glaces.html.twig', [
-            'GlaceTypeForm' => $form->createView(),
+        return $this->render('add_traffic_light/index.html.twig', [
+            'AddTrafficTypeForm' => $form->createView(),
         ]);
     }
 }

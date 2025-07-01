@@ -3,5 +3,12 @@
 {% block title %}Ajouter un feu tricolore.{% endblock %}
 
 {% block body %}
-
+    <main class="add-traffic-page">
+        <h1 class="add-traffic-title">Ajouter un feu tricolore</h1>
+        {{ form_start(AddTrafficTypeForm, {'attr': {'class': 'add-traffic-form'}}) }}
+            {{ form_widget(AddTrafficTypeForm) }}
+            {{ form_errors(AddTrafficTypeForm.imageFile) }}
+            <button class="btn btn-add-traffic" type="submit">Ajouter</button>
+        {{ form_end(AddTrafficTypeForm) }}
+    </main>
 {% endblock %}

@@ -14,8 +14,8 @@
         <nav class="navbar">
             <ul class="menu-items-container">
                 <li><a href="{{path('Home')}}" class="menu-items"> Accueil</a></li>
-                <li><a href="" class="menu-items"></a></li>
-                <li><a href="" class="menu-items"></a></li>
+                <li><a href="{{ path('trafficlight')}}" class="menu-items">Ajouter un feu tricolore</a></li>
+                <li><a href="{{ path('traffic_list')}}" class="menu-items">Galerie</a></li>
                 <li><a href="" class="menu-items"></a></li>
             </ul>
             <ul class="navbar-users">
@@ -46,5 +46,19 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+            <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <span>© {{ "now"|date("Y") }} Projet Symfony Collection - Feux Tricolores</span>
+            </div>
+            <div class="footer-center">
+                <a href="{{ path('Home') }}">Accueil</a> |
+                <a href="{{ path('traffic_list') }}">Galerie</a> |
+            </div>
+            <div class="footer-right">
+                <span>Réalisé par <strong>Sasha</strong></span>
+            </div>
+        </div>
+    </footer>
     </body>
 </html>

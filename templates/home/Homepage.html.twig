@@ -4,11 +4,11 @@
 
 {% block body %}
 <main class="home-page">
-{# section HERO  #}
+    {# section HERO  #}
     <section class="hero">
         <div class="circle-light-hollow"></div>
         <div class="hero__image">
-                {# traffic light number 1#}
+            {# traffic light number 1#}
             <div class="traffic-light">
                 <div class="light red"></div>
                 <div class="light orange"></div>
@@ -31,65 +31,55 @@
             </div>
         </div>
     </section>
+
+    {# section about #}
+    <section class="about">
+        <div class="about__container">
+            <div class="about__content">
+                <h2>À propos de nous</h2>
+                <p>
+                    Nous collectionnons des feux tricolores venus du monde entier.
+                    Formes, couleurs, mécanismes : chaque pièce raconte une histoire.
+                </p>
+                <p>
+                    Ce site est dédié à partager notre passion pour ces objets lumineux, à la fois techniques et symboliques.
+                </p>
+            </div>
+            <div class="about__image">
+                <img src="/img/about_img.webp" alt="À propos de nous">
+            </div>
+        </div>
+    </section>
+
     {# section pruducts  #}
     <section id="Produits">
-            <div class="produit-heading-container">
-                <h2>Voici la listes de nos derniers produits ajouté :</h2>
-            </div>
+        <div class="produit-heading-container">
+            <h2>Voici la liste de nos derniers produits ajoutés :</h2>
+        </div>
         <div class="produit-content-container">
-            {# card number 1 #}
             <div class="card-container">
-                <div class="card">
-                    <div class="card-content-container">
-                        <div class="card-heading">
-                            <div class="card-img-container">
-                                <p>IMAGE</p>
+                {% for product in lastTrafficLights %}
+                    <div class="card">
+                        <div class="card-content-container">
+                            <div class="card-heading">
+                                <div class="card-img-container">
+                                    {% if product.image %}
+                                        <img src="/uploads/images/{{ product.image }}" alt="{{ product.name }}" style="max-width:100px;max-height:100px;">
+                                    {% else %}
+                                        <div class="img-placeholder">Aucune image</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3>{{ product.name }}</h3>
+                                <p>{{ product.description }}</p>
+                                <p><strong>Valeur estimée :</strong> {{ product.value }}</p>
                             </div>
                         </div>
-                        <div class="card-content">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
                     </div>
-                </div>
-                {# card number 2  #}
-                <div class="card">
-                    <div class="card-content-container">
-                        <div class="card-heading">
-                            <div class="card-img-container">
-                            <p>IMAGE</p>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                </div>
-                    {# card number 3 #}
-                <div class="card">
-                    <div class="card-content-container">
-                        <div class="card-heading">
-                            <div class="card-img-container">
-                            <p>IMAGE</p>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                </div>
-                    {# card number 4 #}
-                <div class="card">
-                    <div class="card-content-container">
-                        <div class="card-heading">
-                            <div class="card-img-container">
-                            <p>IMAGE</p>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <p>Lorem ipsum dolor sit amet.</p>
-                        </div>
-                    </div>
-                </div>
+                {% else %}
+                    <p>Aucun produit trouvé.</p>
+                {% endfor %}
             </div>
         </div>
     </section>

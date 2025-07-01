@@ -17,22 +17,3 @@ document.addEventListener('DOMContentLoaded', () => {
     switchLight();
   });
 });
-
-// gestion de l'effet autour des cards de la Homepage
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.card').forEach(card => {
-    const classes = ['border-red', 'border-orange', 'border-green'];
-    const durations = [3000, 2000, 5000]; // même ordre que pour le feu
-    let current = 0;
-
-    function switchBorder() {
-      card.classList.remove(...classes);
-      card.classList.add(classes[current]);
-      const delay = durations[current];
-      current = (current + 1) % classes.length;
-      setTimeout(switchBorder, delay);
-    }
-
-    switchBorder();
-  });
-});

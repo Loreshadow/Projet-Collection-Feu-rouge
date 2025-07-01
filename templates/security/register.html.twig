@@ -2,8 +2,10 @@
 
 {% block title %}Register !{% endblock %}
 {% block body %}
-{{ form_start(RegisterTypeForm) }}
-{{ form_widget(RegisterTypeForm) }}
-<button>Valider</button>
-{{ form_end(RegisterTypeForm) }}
+<main class="register-page">
+    {{ form_start(RegisterTypeForm, {'attr': {'class': 'register-form'}}) }}
+    {{ form_widget(RegisterTypeForm) }}
+    <button class="btn btn-register" type="submit">Valider</button>
+    {{ form_end(RegisterTypeForm) }}
+</main>
 {% endblock %}

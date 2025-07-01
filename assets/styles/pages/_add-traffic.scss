@@ -1,0 +1,78 @@
+@use '../abstracts/variables' as v;
+
+.add-traffic-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(120deg, v.$dark 60%, v.$green 100%);
+  padding-top: 4rem;
+}
+
+.add-traffic-title {
+  color: v.$light;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.add-traffic-form {
+  background: white;
+  border: 2.5px solid v.$orange;
+  padding: 2.5rem 2rem;
+  border-radius: v.$radius;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  min-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: #222;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+  }
+  label::after {
+    content: " :";
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    margin-bottom: 1.2rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid v.$green;
+    border-radius: v.$radius;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background: #f8f9fa;
+    transition: border-color 0.2s;
+    &:focus {
+      border-color: v.$red;
+      outline: none;
+    }
+  }
+
+  .btn-add-traffic {
+    width: 100%;
+    background: v.$green;
+    color: white;
+    border: none;
+    border-radius: v.$radius;
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+    transition: background 0.2s;
+    &:hover {
+      background: v.$red;
+    }
+  }
+}

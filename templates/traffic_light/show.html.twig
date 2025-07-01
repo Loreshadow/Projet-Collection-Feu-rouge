@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ trafficLight.name }}{% endblock %}
+
+{% block body %}
+<main class="traffic-detail-page">
+    <div class="traffic-detail-card">
+        <div class="traffic-detail-img">
+            {% if trafficLight.image %}
+                <img src="/uploads/images/{{ trafficLight.image }}" alt="{{ trafficLight.name }}">
+            {% else %}
+                <div class="img-placeholder">Aucune image</div>
+            {% endif %}
+        </div>
+        <div class="traffic-detail-content">
+            <h1>{{ trafficLight.name }}</h1>
+            <p><strong>Caractéristique spéciale :</strong> {{ trafficLight.special }}</p>
+            <p><strong>Valeur estimée :</strong> {{ trafficLight.value }}</p>
+            <p><strong>Description détaillée :</strong> {{ trafficLight.description }}</p>
+        </div>
+    </div>
+
+    <section class="comments-section">
+        <h2>Commentaires</h2>
+        {% if comments is empty %}
+            <p>Aucun commentaire pour ce feu.</p>
+        {% else %}
+            <ul class="comments-list">
+                {% for comment in comments %}
+                    <li>
+                        <div class="comment-header">
+                            <strong>{{ comment.user ? comment.user.username : 'Anonyme' }}</strong>
+                            <span class="comment-date">{{ comment.createdAt|date('d/m/Y H:i') }}</span>
+                        </div>
+                        <div class="comment-content">{{ comment.content }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if app.user %}
+            {{ form_start(commentForm, {'attr': {'class': 'comment-form'}}) }}
+                {{ form_widget(commentForm) }}
+                <button class="btn" type="submit">Envoyer</button>
+            {{ form_end(commentForm) }}
+        {% else %}
+            <p>Connectez-vous pour laisser un commentaire.</p>
+        {% endif %}
+    </section>
+    <a href="{{ path('traffic_list') }}" class="btn">Retour à la liste</a>
+</main>
+{% endblock %}

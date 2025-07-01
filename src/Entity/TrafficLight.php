@@ -2,13 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\TrafficLightRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TrafficLightRepository;
+use DateTimeImmutable;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File; // <-- CORRECT IMPORT
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: TrafficLightRepository::class)]
 class TrafficLight
 {
+    #[Vich\UploadableField(mapping:'images', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -26,7 +36,7 @@ class TrafficLight
     #[ORM\Column(length: 255)]
     private ?string $special = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
     public function getId(): ?int
@@ -42,7 +52,6 @@ class TrafficLight
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -54,7 +63,6 @@ class TrafficLight
     public function setValue(string $value): static
     {
         $this->value = $value;
-
         return $this;
     }
 
@@ -66,7 +74,6 @@ class TrafficLight
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -78,7 +85,6 @@ class TrafficLight
     public function setSpecial(string $special): static
     {
         $this->special = $special;
-
         return $this;
     }
 
@@ -87,10 +93,22 @@ class TrafficLight
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(?string $image): static
     {
         $this->image = $image;
-
         return $this;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+        if ($imageFile) {
+            $this->updatedAt = new DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 }
