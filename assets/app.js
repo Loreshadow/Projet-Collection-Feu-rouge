@@ -7,4 +7,5 @@
  */
 import './styles/app.scss';
 import './js/traffic-light.js';
+import './js/navbar.js';
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
