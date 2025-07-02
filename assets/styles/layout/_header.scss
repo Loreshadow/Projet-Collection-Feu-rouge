@@ -29,6 +29,11 @@ header {
           color: inherit;
           font-weight: 500;
           text-decoration: none;
+          transition: color 0.2s, border-bottom 0.2s;
+        }
+        a:hover, a:focus {
+          color: v.$green;
+          border-bottom: 2px solid v.$green;
         }
       }
     }
@@ -44,6 +49,9 @@ header {
       }
     }
   }
+}
+.navbar-menu-responsive {
+  display: none;
 }
 
 .navbar-burger {
@@ -96,6 +104,13 @@ header {
 }
 
 @media (max-width: 1120px) {
+  .navbar-menu-responsive {
+    display: flex;
+  }
+  ul.menu-items-container,
+  ul.navbar-users {
+    display: none;
+  }
   header nav {
     flex-wrap: wrap;
     padding: 0.7rem 0.5rem;
@@ -147,6 +162,11 @@ header {
       border-bottom: 1px solid #2e3b4a;
       a, span {
         color: v.$light;
+        transition: color 0.2s, border-bottom 0.2s;
+      }
+      a:hover, a:focus {
+        color: v.$green;
+        border-bottom: 2px solid v.$green;
       }
     }
     li:last-child {
