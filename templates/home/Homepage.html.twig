@@ -4,11 +4,9 @@
 
 {% block body %}
 <main class="home-page">
-    {# section HERO  #}
     <section class="hero">
         <div class="circle-light-hollow"></div>
         <div class="hero__image">
-            {# traffic light number 1#}
             <div class="traffic-light">
                 <div class="light red"></div>
                 <div class="light orange"></div>
@@ -22,7 +20,6 @@
             </p>
             <a href="{{ path('traffic_list')}}" class="btn">Notre gallerie</a>
         </div>
-        {# traffic light number 2#}
         <div class="hero__image">
             <div class="traffic-light">
                 <div class="light red"></div>
@@ -32,7 +29,6 @@
         </div>
     </section>
 
-    {# section about #}
     <section class="about">
         <div class="about__container">
             <div class="about__content">
@@ -51,7 +47,6 @@
         </div>
     </section>
 
-    {# section pruducts  #}
     <section id="Produits">
         <div class="produit-heading-container">
             <h2>Voici la liste de nos derniers produits ajoutés :</h2>
@@ -59,24 +54,26 @@
         <div class="produit-content-container">
             <div class="card-container">
                 {% for product in lastTrafficLights %}
-                    <div class="card">
-                        <div class="card-content-container">
-                            <div class="card-heading">
-                                <div class="card-img-container">
-                                    {% if product.image %}
-                                        <img src="/uploads/images/{{ product.image }}" alt="{{ product.name }}" style="max-width:100px;max-height:100px;">
-                                    {% else %}
-                                        <div class="img-placeholder">Aucune image</div>
-                                    {% endif %}
+                    <a href="{{ path('traffic_list', {'highlight': product.id}) }}" class="card-link">
+                        <div class="card">
+                            <div class="card-content-container">
+                                <div class="card-heading">
+                                    <div class="card-img-container">
+                                        {% if product.image %}
+                                            <img src="/uploads/images/{{ product.image }}" alt="{{ product.name }}" style="max-width:100px;max-height:100px;">
+                                        {% else %}
+                                            <div class="img-placeholder">Aucune image</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3>{{ product.name }}</h3>
+                                    <p>{{ product.description }}</p>
+                                    <p><strong>Valeur estimée :</strong> {{ product.value }}</p>
                                 </div>
                             </div>
-                            <div class="card-content">
-                                <h3>{{ product.name }}</h3>
-                                <p>{{ product.description }}</p>
-                                <p><strong>Valeur estimée :</strong> {{ product.value }}</p>
-                            </div>
                         </div>
-                    </div>
+                    </a>
                 {% else %}
                     <p>Aucun produit trouvé.</p>
                 {% endfor %}

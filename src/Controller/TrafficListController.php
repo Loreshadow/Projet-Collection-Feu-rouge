@@ -10,12 +10,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TrafficListController extends AbstractController
 {
-    #[Route('/feux/{page<\d+>?1}/{selectedId?}', name: 'traffic_list')]
+    #[Route('/feux/{page<\d+>?1}', name: 'traffic_list')]
     public function list(
         TrafficLightRepository $repo,
         Request $request,
-        int $page = 1,
-        ?int $selectedId = null
+        int $page = 1
     ): Response {
         $limit = 10;
         $offset = ($page - 1) * $limit;
@@ -37,13 +36,18 @@ class TrafficListController extends AbstractController
             $trafficLights = $repo->findBy([], ['id' => 'DESC'], $limit, $offset);
         }
 
+        $highlightId = $request->query->get('highlight');
         $selected = null;
-        if ($selectedId) {
+        if ($highlightId) {
             foreach ($trafficLights as $feu) {
-                if ($feu->getId() === $selectedId) {
+                if ($feu->getId() == $highlightId) {
                     $selected = $feu;
                     break;
                 }
+            }
+            // Si le feu n'est pas dans la page courante, on va le chercher en base
+            if (!$selected) {
+                $selected = $repo->find($highlightId);
             }
         }
         if (!$selected && count($trafficLights) > 0) {

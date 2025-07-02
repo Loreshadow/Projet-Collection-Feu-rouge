@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class AddTrafficLightController extends AbstractController
 {
-    #[Route('/add/traffic/light', name: 'trafficlight')]
+    #[Route('/ajouter/trafficlight', name: 'trafficlight')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $traffic = new TrafficLight();

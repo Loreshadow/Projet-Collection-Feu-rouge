@@ -32,22 +32,24 @@
 
     <ul class="traffic-list">
         {% for feu in trafficLights %}
-            <li class="traffic-list-item">
-                <span class="traffic-list-img">
-                    {% if feu.image %}
-                        <img src="/uploads/images/{{ feu.image }}" alt="{{ feu.name }}">
-                    {% else %}
-                        <div class="img-placeholder">Aucune image</div>
-                    {% endif %}
-                </span>
-                <span class="traffic-list-content">
-                    <h2>{{ feu.name }}</h2>
-                    <div class="special">Caractéristique spéciale : {{ feu.special }}</div>
-                    <div class="desc">{{ feu.description }}</div>
-                    <p><strong>Spécial :</strong> {{ feu.special }}</p>
-                    <a href="{{ path('traffic_light_detail', {id: feu.id}) }}" class="btn btn-detail">Voir la fiche détaillée</a>
-                </span>
-            </li>
+            <a href="{{ path('traffic_list', {'highlight': feu.id}) }}">
+                <li class="traffic-list-item">
+                    <span class="traffic-list-img">
+                        {% if feu.image %}
+                            <img src="/uploads/images/{{ feu.image }}" alt="{{ feu.name }}">
+                        {% else %}
+                            <div class="img-placeholder">Aucune image</div>
+                        {% endif %}
+                    </span>
+                    <span class="traffic-list-content">
+                        <h2>{{ feu.name }}</h2>
+                        <div class="special">Caractéristique spéciale : {{ feu.special }}</div>
+                        <div class="desc">{{ feu.description }}</div>
+                        <p><strong>Spécial :</strong> {{ feu.special }}</p>
+                        <a href="{{ path('traffic_light_detail', {id: feu.id}) }}" class="btn btn-detail">Voir la fiche détaillée</a>
+                    </span>
+                </li>
+            </a>
         {% else %}
             <li>Aucun feu trouvé.</li>
         {% endfor %}
