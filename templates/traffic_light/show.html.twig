@@ -30,7 +30,7 @@
                     <li>
                         <div class="comment-header">
                             <strong>{{ comment.user ? comment.user.username : 'Anonyme' }}</strong>
-                            <span class="comment-date">{{ comment.createdAt|date('d/m/Y H:i') }}</span>
+                            <span class="comment-date">{{ comment.createdAt|date('d/m/Y H:i', 'Europe/Paris') }}</span>
                         </div>
                         <div class="comment-content">{{ comment.content }}</div>
                     </li>
