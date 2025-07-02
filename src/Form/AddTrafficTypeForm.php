@@ -23,7 +23,7 @@ class AddTrafficTypeForm extends AbstractType
                 'mapped' => true,
                 'constraints' => [
                     new File([
-                        'maxSize' => '2M',
+                        'maxSize' => '6M',
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png',
