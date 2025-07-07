@@ -31,6 +31,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $profile_color = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $profile_image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,5 +108,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getProfileColor(): ?string
+    {
+        return $this->profile_color;
+    }
+
+    public function setProfileColor(string $profile_color): static
+    {
+        $this->profile_color = $profile_color;
+
+        return $this;
+    }
+
+    public function getProfileImage(): ?string
+    {
+        return $this->profile_image;
+    }
+
+    public function setProfileImage(string $profile_image): static
+    {
+        $this->profile_image = $profile_image;
+
+        return $this;
     }
 }

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+<main class="profile-page">
+    {% if app.user %}
+        <div class="profile-card">
+            <h1 class="profile-title" style="color: {{ app.user.profileColor }}">
+                Bienvenue, {{ app.user.username }} !
+            </h1>
+            {% if app.user.profileImage %}
+                <img src="/uploads/profiles/{{ app.user.profileImage }}" alt="Avatar" class="profile-avatar">
+            {% endif %}
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+            <div class="profile-form-container">
+                {{ form_start(profileForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                    {{ form_row(profileForm.username) }}
+                    {{ form_row(profileForm.profile_color) }}
+                    {{ form_row(profileForm.profile_image) }}
+                    <button class="btn-login" type="submit">Mettre à jour</button>
+                {{ form_end(profileForm) }}
+            </div>
+        </div>
+        <script>
+            const colorInput = document.getElementById('profile_profile_color');
+            const h1 = document.querySelector('.profile-title');
+            if(colorInput && h1) {
+                colorInput.addEventListener('input', e => {
+                    h1.style.color = e.target.value;
+                });
+            }
+        </script>
+    {% else %}
+        <div class="alert alert-danger">Vous devez être connecté pour accéder à votre profil.</div>
+    {% endif %}
+</main>
+{% endblock %}

@@ -55,11 +55,14 @@
         {% if app.user %}
             <li><a href="{{ path('logout') }}" class="menu-items">Se déconnecter</a></li>
             <div class="nav-avatars-container">
-                <a href="">
-                    <img src="/img/6596121.png" alt="Avatar" class="nav-avatar">
-                </a>
+                <a href="{{ path('profile')}}">
+                            <img src="{{ app.user.profileImage ? '/uploads/profiles/' ~ app.user.profileImage : '/img/6596121.png' }}" alt="Avatar" class="nav-avatar">
             </div>
-            <li class="menu-items">Bonjour {{ app.user.userIdentifier }}</li>
+            <li class="menu-items">
+                <a href="{{ path('profile') }}" style="color: {{ app.user.profileColor }}">
+                    Bonjour {{ app.user.userIdentifier }}
+                </a>
+            </li>
         {% else %}
             <li><a href="{{ path('register') }}" class="menu-items">S'inscrire</a></li>
             <li><a href="{{ path('login') }}" class="menu-items">Se connecter</a></li>

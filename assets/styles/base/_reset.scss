@@ -1,8 +1,14 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
 a {
   text-decoration: none;
 }
