@@ -28,7 +28,8 @@ final class ContactController extends AbstractController
                 dump('POST reçu');
             }
             $email = (new Email())
-                ->from($data['email'])
+                ->from('sc7jewe1253@sc7jewe1253.universe.wf')
+                ->replyTo($data['email']) // <-- l'adresse de l'utilisateur ici
                 ->to('offwsh99@gmail.com')
                 ->subject('[Contact] ' . $data['subject'])
                 ->text(
