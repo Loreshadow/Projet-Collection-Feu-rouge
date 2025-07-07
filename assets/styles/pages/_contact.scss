@@ -1,0 +1,77 @@
+@use '../abstracts/variables' as v;
+
+.contact-page {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3rem 1rem;
+  background: #f6fcf7;
+}
+
+.contact-title {
+  font-size: 2.2rem;
+  color: v.$dark;
+  margin-bottom: 2rem;
+  font-family: v.$font-heading;
+}
+
+.contact-form-container {
+  background: #fff;
+  border-radius: v.$radius;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  padding: 2.5rem 2rem;
+  min-width: 320px;
+  max-width: 420px;
+  width: 100%;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  label {
+    font-weight: 600;
+    color: v.$dark;
+    margin-bottom: 0.3rem;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid v.$green;
+    border-radius: v.$radius;
+    font-size: 1rem;
+    background: #f8f9fa;
+    transition: border-color 0.2s;
+    &:focus {
+      border-color: v.$red;
+      outline: none;
+    }
+  }
+  .btn-contact {
+    background: v.$green;
+    color: white;
+    border: none;
+    border-radius: v.$radius;
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+    transition: 0.2s;
+    &:hover {
+      background: v.$red;
+    }
+  }
+}
+
+.alert-success {
+  background: v.$green;
+  color: #fff;
+  border-radius: v.$radius;
+  padding: 0.7rem 1.2rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}

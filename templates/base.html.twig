@@ -22,6 +22,7 @@
             <li><a href="{{ path('Home') }}" class="menu-items">Accueil</a></li>
             <li><a href="{{ path('trafficlight') }}" class="menu-items">Ajouter un feu tricolore</a></li>
             <li><a href="{{ path('traffic_list') }}" class="menu-items">Galerie</a></li>
+            <li><a href="{{ path('contact') }}" class="menu-items">Contact</a></li>
         </ul>
         <ul class="navbar-menu-col">
             {% if app.user and is_granted('ROLE_ADMIN') %}
@@ -45,10 +46,11 @@
         <li><a href="{{ path('Home') }}" class="menu-items">Accueil</a></li>
         <li><a href="{{ path('trafficlight') }}" class="menu-items">Ajouter un feu tricolore</a></li>
         <li><a href="{{ path('traffic_list') }}" class="menu-items">Galerie</a></li>
+        <li><a href="{{ path('contact') }}" class="menu-items">Contact</a></li>
     </ul>
     <ul class="navbar-users">
         {% if app.user and is_granted('ROLE_ADMIN') %}
-            <li><a href="{{ path('admin') }}" class="menu-items">Panel D'Administration</a></li>
+            <li><a href="{{ path('admin') }}" class="menu-items" target="blank">Panel D'Administration</a></li>
         {% endif %}
         {% if app.user %}
             <li><a href="{{ path('logout') }}" class="menu-items">Se déconnecter</a></li>

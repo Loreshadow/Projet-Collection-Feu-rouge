@@ -37,6 +37,7 @@ security:
     - { path: ^/admin, roles: ROLE_ADMIN }
     - { path: ^/ajouter, roles: IS_AUTHENTICATED_FULLY }
     - { path: ^/feu, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/contact, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:
