@@ -10,66 +10,98 @@
         {% endblock %}
     </head>
     <body>
-    <header>
-<nav class="navbar">
-    <button class="navbar-burger" aria-label="Menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <div class="navbar-menu-responsive">
-        <ul class="navbar-menu-col">
-            <li><a href="{{ path('Home') }}" class="menu-items">Accueil</a></li>
-            <li><a href="{{ path('trafficlight') }}" class="menu-items">Ajouter un feu tricolore</a></li>
-            <li><a href="{{ path('traffic_list') }}" class="menu-items">Galerie</a></li>
-            <li><a href="{{ path('contact') }}" class="menu-items">Contact</a></li>
-        </ul>
-        <ul class="navbar-menu-col">
-            {% if app.user and is_granted('ROLE_ADMIN') %}
-                <li><a href="{{ path('admin') }}" class="menu-items">Panel D'Administration</a></li>
-            {% endif %}
-            {% if app.user %}
-                <li><a href="{{ path('logout') }}" class="menu-items">Se déconnecter</a></li>
-                <li class="nav-avatars-container">
-                    <a href="">
-                        <img src="/img/6596121.png" alt="Avatar" class="nav-avatar">
-                    </a>
-                </li>
-                <li class="menu-items">Bonjour {{ app.user.userIdentifier }}</li>
-            {% else %}
-                <li><a href="{{ path('register') }}" class="menu-items">S'inscrire</a></li>
-                <li><a href="{{ path('login') }}" class="menu-items">Se connecter</a></li>
-            {% endif %}
-        </ul>
-    </div>
-    <ul class="menu-items-container">
-        <li><a href="{{ path('Home') }}" class="menu-items">Accueil</a></li>
-        <li><a href="{{ path('trafficlight') }}" class="menu-items">Ajouter un feu tricolore</a></li>
-        <li><a href="{{ path('traffic_list') }}" class="menu-items">Galerie</a></li>
-        <li><a href="{{ path('contact') }}" class="menu-items">Contact</a></li>
-    </ul>
-    <ul class="navbar-users">
-        {% if app.user and is_granted('ROLE_ADMIN') %}
-            <li><a href="{{ path('admin') }}" class="menu-items" target="blank">Panel D'Administration</a></li>
-        {% endif %}
-        {% if app.user %}
-            <li><a href="{{ path('logout') }}" class="menu-items">Se déconnecter</a></li>
-            <div class="nav-avatars-container">
-                <a href="{{ path('profile')}}">
-                            <img src="{{ app.user.profileImage ? '/uploads/profiles/' ~ app.user.profileImage : '/img/6596121.png' }}" alt="Avatar" class="nav-avatar">
+    <!-- main nav (nav du haut) -->
+    <header id="main-header" class="header-top">
+        <nav class="navbar">
+            <div class="navbar-content" id="navbar-content">
+                <ul class="menu-items-container" id="main-navbar-links">
+                    <li><a href="{{ path('Home') }}" class="menu-items">Accueil</a></li>
+                    <li><a href="{{ path('trafficlight') }}" class="menu-items">Ajouter un feu tricolore</a></li>
+                    <li><a href="{{ path('traffic_list') }}" class="menu-items">Galerie</a></li>
+                    <li><a href="{{ path('contact') }}" class="menu-items">Contact</a></li>
+                    {% if app.user and is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('admin') }}" class="menu-items">Panel D'Administration</a></li>
+                    {% endif %}
+                    {% if app.user %}
+                        <li><a href="{{ path('logout') }}" class="menu-items">Se déconnecter</a></li>
+                        <li class="nav-avatars-container">
+                            <a href="{{ path('profile')}}">
+                                <img src="{{ app.user.profileImage ? '/uploads/profiles/' ~ app.user.profileImage : '/img/6596121.png' }}" alt="Avatar" class="nav-avatar">
+                            </a>
+                        </li>
+                        <li class="menu-items">
+                            <a href="{{ path('profile') }}" style="color: {{ app.user.profileColor }}">
+                                Bonjour {{ app.user.userIdentifier }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ path('register') }}" class="menu-items">S'inscrire</a></li>
+                        <li><a href="{{ path('login') }}" class="menu-items">Se connecter</a></li>
+                    {% endif %}
+                </ul>
+                <div class="navbar-mobile-controls">
+                    <button class="navbar-toggle" id="navbar-toggle" aria-label="Afficher le menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    {% if app.user %}
+                        <a href="{{ path('profile') }}" class="navbar-profile-link">
+                            <img src="{{ app.user.profileImage ? '/uploads/profiles/' ~ app.user.profileImage : '/img/6596121.png' }}" alt="Avatar" class="navbar-profile-avatar">
+                        </a>
+                    {% endif %}
+                </div>
             </div>
-            <li class="menu-items">
-                <a href="{{ path('profile') }}" style="color: {{ app.user.profileColor }}">
-                    Bonjour {{ app.user.userIdentifier }}
-                </a>
-            </li>
-        {% else %}
-            <li><a href="{{ path('register') }}" class="menu-items">S'inscrire</a></li>
-            <li><a href="{{ path('login') }}" class="menu-items">Se connecter</a></li>
-        {% endif %}
-    </ul>
-</nav>
+            <div class="navbar-dropdown-list" id="navbar-dropdown-list">
+                <ul>
+                    <li><a href="{{ path('Home') }}" class="menu-items">Accueil</a></li>
+                    <li><a href="{{ path('trafficlight') }}" class="menu-items">Ajouter un feu tricolore</a></li>
+                    <li><a href="{{ path('traffic_list') }}" class="menu-items">Galerie</a></li>
+                    <li><a href="{{ path('contact') }}" class="menu-items">Contact</a></li>
+                    {% if app.user and is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('admin') }}" class="menu-items">Panel D'Administration</a></li>
+                    {% endif %}
+                    {% if app.user %}
+                        <li><a href="{{ path('logout') }}" class="menu-items">Se déconnecter</a></li>
+                        <li>
+                            <a href="{{ path('profile')}}">
+                                <img src="{{ app.user.profileImage ? '/uploads/profiles/' ~ app.user.profileImage : '/img/6596121.png' }}" alt="Avatar" class="nav-avatar" style="vertical-align: middle; width: 32px; height: 32px;">
+                                <span style="color: {{ app.user.profileColor }}">{{ app.user.userIdentifier }}</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ path('register') }}" class="menu-items">S'inscrire</a></li>
+                        <li><a href="{{ path('login') }}" class="menu-items">Se connecter</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
     </header>
+
+    <!-- la nav juste en dessous de celle tout en haut ( nav du bas ) -->
+    <header id="user-header" class="header-bottom">
+        <nav class="navbar navbar-user">
+            <ul class="user-menu-container">
+                {% if app.user %}
+                    <li><a href="{{ path('logout') }}" class="menu-items">Se déconnecter</a></li>
+                    <li class="nav-avatars-container">
+                        <a href="{{ path('profile')}}">
+                            <img src="{{ app.user.profileImage ? '/uploads/profiles/' ~ app.user.profileImage : '/img/6596121.png' }}" alt="Avatar" class="nav-avatar">
+                        </a>
+                    </li>
+                    <li class="menu-items">
+                        <a href="{{ path('profile') }}" style="color: {{ app.user.profileColor }}">
+                            Bonjour {{ app.user.userIdentifier }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li><a href="{{ path('register') }}" class="menu-items">S'inscrire</a></li>
+                    <li><a href="{{ path('login') }}" class="menu-items">Se connecter</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
         {% block body %}{% endblock %}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
