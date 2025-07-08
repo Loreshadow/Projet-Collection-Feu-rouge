@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ trafficLight.name }}{% endblock %}
@@ -21,18 +22,50 @@
     </div>
 
     <section class="comments-section">
-        <h2>Commentaires</h2>
+        <h2>💬 Commentaires</h2>
+        
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">✅ {{ message }}</div>
+        {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-error">❌ {{ message }}</div>
+        {% endfor %}
+        
         {% if comments is empty %}
-            <p>Aucun commentaire pour ce feu.</p>
+            <p style="text-align: center; color: #666; font-style: italic; padding: 2rem;">Aucun commentaire pour ce feu. Soyez le premier à donner votre avis !</p>
         {% else %}
             <ul class="comments-list">
                 {% for comment in comments %}
-                    <li>
+                    <li class="comment-item">
                         <div class="comment-header">
-                            <strong style="color: {{ app.user.profileColor }}">{{ comment.user ? comment.user.username : 'Anonyme' }}</strong>
-                            <span class="comment-date">{{ comment.createdAt|date('d/m/Y H:i', 'Europe/Paris') }}</span>
+                            <div class="comment-author-info">
+                                <strong style="color: {{ comment.user.profileColor }}">
+                                    {{ comment.user ? comment.user.username : 'Anonyme' }}
+                                </strong>
+                            </div>
+                            <div class="comment-date">
+                                📅 {{ comment.createdAt|date('d/m/Y à H:i', 'Europe/Paris') }}
+                                {% if comment.updatedAt %}
+                                    <span class="comment-edited">✏️ Modifié le {{ comment.updatedAt|date('d/m/Y à H:i', 'Europe/Paris') }}</span>
+                                {% endif %}
+                            </div>
                         </div>
+                        
                         <div class="comment-content">{{ comment.content }}</div>
+                        
+                        {% if app.user and (comment.user == app.user or is_granted('ROLE_ADMIN')) %}
+                            <div class="comment-actions">
+                                <a href="{{ path('comment_edit', {id: comment.id}) }}" class="btn-edit">
+                                    ✏️ Modifier
+                                </a>
+                                <form method="post" action="{{ path('comment_delete', {id: comment.id}) }}" 
+                                      onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')" 
+                                      style="display: inline;">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                                    <button type="submit" class="btn-delete">🗑️ Supprimer</button>
+                                </form>
+                            </div>
+                        {% endif %}
                     </li>
                 {% endfor %}
             </ul>
@@ -41,12 +74,22 @@
         {% if app.user %}
             {{ form_start(commentForm, {'attr': {'class': 'comment-form'}}) }}
                 {{ form_widget(commentForm) }}
-                <button class="btn" type="submit">Envoyer</button>
+                <button class="btn" type="submit">💬 Envoyer mon commentaire</button>
             {{ form_end(commentForm) }}
         {% else %}
-            <p>Connectez-vous pour laisser un commentaire.</p>
+            <div style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 8px; color: #666;">
+                <p>🔐 <strong>Connectez-vous pour laisser un commentaire</strong></p>
+                <a href="{{ path('login') }}" style="color: {{ v.green }}; text-decoration: underline;">Se connecter</a> 
+                ou 
+                <a href="{{ path('register') }}" style="color: {{ v.green }}; text-decoration: underline;">S'inscrire</a>
+            </div>
         {% endif %}
     </section>
-    <a href="{{ path('traffic_list') }}" class="btn">Retour à la liste</a>
+    
+    <div style="text-align: center; margin-top: 2rem;">
+        <a href="{{ path('traffic_list') }}" class="btn" style="background: #6c757d; color: white; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; transition: all 0.2s;">
+            ← Retour à la galerie
+        </a>
+    </div>
 </main>
 {% endblock %}
