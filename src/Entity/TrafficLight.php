@@ -16,9 +16,6 @@ class TrafficLight
     #[Vich\UploadableField(mapping:'images', fileNameProperty: 'image')]
     private ?File $imageFile = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?DateTimeImmutable $updatedAt = null;
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -102,9 +99,6 @@ class TrafficLight
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
-        if ($imageFile) {
-            $this->updatedAt = new DateTimeImmutable();
-        }
     }
 
     public function getImageFile(): ?File
