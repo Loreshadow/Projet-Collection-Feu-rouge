@@ -106,7 +106,7 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-    <footer class="main-footer">
+<footer class="main-footer">
         <div class="footer-content">
             <div class="footer-left">
                 <span>© {{ "now"|date("Y") }} Projet Symfony Collection - Feux Tricolores</span>
@@ -114,9 +114,18 @@
             <div class="footer-center">
                 <a href="{{ path('Home') }}">Accueil</a> 
                 <a href="{{ path('traffic_list') }}">Galerie</a> 
+                <a href="{{ path('contact') }}">Contact</a>
             </div>
             <div class="footer-right">
                 <span>Réalisé par <strong>Sasha</strong></span>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <div class="legal-links">
+                <a href="#" class="legal-link">Mentions légales</a>
+                <a href="#" class="legal-link">Politique de confidentialité</a>
+                <a href="#" class="legal-link">Conditions d'utilisation</a>
+                <a href="#" class="legal-link">Cookies</a>
             </div>
         </div>
     </footer>

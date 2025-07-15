@@ -17,11 +17,13 @@
   min-height: 70px;
 
   &.navbar-scrolled {
+    margin: 0 auto;
     min-height: 38px;
     background-color: rgba(darken(v.$dark, 7.5%), 0.85);
     top: 14px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.13);
-    border-radius: 0 0 18px 18px;
+    width: 95%;
+    border-radius: 18px;
     .menu-items-container {
       display: none;
     }
