@@ -136,6 +136,11 @@ class TrafficLight
         return $this;
     }
 
+    public function __toString(): string
+    {
+        return $this->name ?? 'Feu sans nom';
+    }
+
     public function removeComment(Comment $comment): static
     {
         if ($this->comments->removeElement($comment)) {
