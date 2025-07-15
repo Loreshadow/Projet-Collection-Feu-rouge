@@ -18,14 +18,10 @@ final class ContactController extends AbstractController
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
-        dump($request->getMethod());
-        dump($request->request->all());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            dump($data);
             if ($request->isMethod('POST')) {
-                dump('POST reçu');
             }
             $email = (new Email())
                 ->from('_mainaccount@sc7jewe1253.universe.wf')
