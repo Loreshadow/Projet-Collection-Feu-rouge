@@ -1,4 +1,3 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Modifier le commentaire{% endblock %}
@@ -6,19 +5,33 @@
 {% block body %}
 <main class="edit-comment-page">
     <div class="edit-comment-container">
-        <h1>✏️ Modifier votre commentaire</h1>
+        <div class="edit-header">
+            <h1>Modifier votre commentaire</h1>
+            <p class="subtitle">Apportez les modifications souhaitées</p>
+        </div>
         
-        {{ form_start(commentForm, {'attr': {'class': 'edit-comment-form'}}) }}
-            {{ form_widget(commentForm) }}
-            <div class="form-actions">
-                <button class="btn-primary" type="submit">
-                    💾 Sauvegarder les modifications
-                </button>
-                <a href="{{ path('traffic_light_detail', {id: comment.trafficLight.id}) }}" class="btn-secondary">
-                    ❌ Annuler
-                </a>
+        <div class="edit-content">
+            <div class="original-comment">
+                <div class="original-label">Commentaire original</div>
+                <div class="original-text">{{ comment.content }}</div>
             </div>
-        {{ form_end(commentForm) }}
+
+            {{ form_start(commentForm, {'attr': {'class': 'edit-comment-form'}}) }}
+                <div class="form-group">
+                    {{ form_label(commentForm.content, 'Nouveau contenu') }}
+                    {{ form_widget(commentForm.content, {'attr': {'placeholder': 'Modifiez votre commentaire...'}}) }}
+                </div>
+                
+                <div class="form-actions">
+                    <a href="{{ path('traffic_light_detail', {id: comment.trafficLight.id}) }}" class="btn-secondary">
+                        ❌ Annuler
+                    </a>
+                    <button class="btn-primary" type="submit">
+                        ✅ Sauvegarder
+                    </button>
+                </div>
+            {{ form_end(commentForm) }}
+        </div>
     </div>
 </main>
 {% endblock %}
