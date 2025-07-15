@@ -29,12 +29,11 @@ class ProfileController extends AbstractController
         $error = null;
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Vérification unicité du nom
             $newName = $form->get('username')->getData();
             if ($userRepository->findOneBy(['username' => $newName]) && $newName !== $user->getUsername()) {
                 $error = "Ce nom d'utilisateur existe déjà.";
             } else {
-                // Gestion image de profil
+                // pour les image qui m'embêtent
                 $imageFile = $form->get('profile_image')->getData();
                 if ($imageFile) {
                     $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
