@@ -22,8 +22,10 @@ class CommentCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextEditorField::new('content', 'Contenu'),
-            AssociationField::new('user', 'Utilisateur'),
-            AssociationField::new('trafficLight', 'Feu tricolore'),
+            AssociationField::new('user', 'Utilisateur')
+                ->hideOnForm(),
+            AssociationField::new('trafficLight', 'Feu tricolore')
+                ->hideOnForm(),
             DateTimeField::new('createdAt', 'Date de création')
                 ->hideOnForm() 
                 ->setFormat('dd/MM/yyyy HH:mm'),

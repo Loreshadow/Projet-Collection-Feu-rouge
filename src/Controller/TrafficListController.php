@@ -45,7 +45,6 @@ class TrafficListController extends AbstractController
                     break;
                 }
             }
-            // Si le feu n'est pas dans la page courante, on va le chercher en base
             if (!$selected) {
                 $selected = $repo->find($highlightId);
             }
