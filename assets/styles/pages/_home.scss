@@ -225,6 +225,17 @@
   }
 }
 
+@media  (max-width: 1400px) {
+  .hero {
+    .circle-light-hollow{
+      position: absolute;
+      left: 13.4%;
+      top: 28%;
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
 @media (max-width: 1100px) {
   .hero {
     height: 90vh;
