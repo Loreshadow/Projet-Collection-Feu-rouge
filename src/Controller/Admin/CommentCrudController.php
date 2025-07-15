@@ -27,7 +27,7 @@ class CommentCrudController extends AbstractCrudController
             AssociationField::new('trafficLight', 'Feu tricolore')
                 ->hideOnForm(),
             DateTimeField::new('createdAt', 'Date de création')
-                ->hideOnForm() 
+                ->hideOnForm()
                 ->setFormat('dd/MM/yyyy HH:mm'),
             DateTimeField::new('updatedAt', 'Dernière modification')
                 ->hideOnForm()
